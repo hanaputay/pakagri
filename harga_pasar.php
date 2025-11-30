@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pak Agri</title>
+    <!--Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofVfB5SloM11sT5K9z5S1t1uM7p1U/A2z" crossorigin="anonymous">
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&family=Red+Hat+Display&family=Roboto:wght@100;300;400;500;700;900&display=swap"
+      
+      rel="stylesheet"
+    />
+    
+    
+
+   
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <!--My Style-->
+    <link rel="stylesheet" href="style3.css" />
+  </head>
+
+  <body>
+    <!--Navbar Mulai-->
+    <nav class="navbar">  
+     
+        <img src="images/logo.png" alt="Logo Pak Agri" class="logo-image" />
+
+      <div class="navbar-nav">
+        <a href="landingpage2.php">Beranda</a>
+        <a href="#artikel">Artikel</a>
+        <a class="nav-active" href="#feature">Fitur</a>
+        <a href="#faq">FAQ</a>
+        
+        
+      </div>
+      <div class="nav-icon">
+        <img src="images/notif.png" alt="">
+        <img src="images/profile.png" alt="">
+      </div>
+
+
+      <div class="navbar-extra">
+        <a href="#" id="hamburger-menu"><i data-feather="menu"></i></a>
+    </nav>
+
+    <!--Navbar Selesai-->
+
+    <div class="harga-pasar">
+       <h1 class="header-harga" >Harga Hari Ini</h1>
+       <p class="tagline" >Dapatkan info harga  beragam komoditas pertanian yang terbaru</p>
+    </div>
+    <div class="pil-daerah">
+        <label for="prov">Pilih Provinsi:</label>
+        
+        <select name="prov" id="prov">
+            <option value=""></option>
+            <option value="1">Aceh</option>
+            <option value="2">Sumatera Utara</option>
+            <option value="3">Sumatera Barat</option>
+            <option value="4">Riau</option>
+            <option value="5">Jambi</option>
+            <option value="6">Sumatera Selatan</option>
+            <option value="7">Bengkulu</option>
+            <option value="8">Lampung</option>
+            <option value="9">Kepulauan Riau</option>
+            <option value="10">Bangka Belitung</option>
+            <option value="11">DKI Jakarta</option>
+            <option value="12">Jawa Barat</option>
+            <option value="13">Jawa Tengah</option>
+            <option value="14">Jawa Timur</option>
+            <option value="15">DI Yogyakarta</option>
+            <option value="16">Bali</option>
+            <option value="17">Nusa Tenggara Barat</option>
+            <option value="18">Nusa Tenggara Timur</option>
+            <option value="19">Kalimantan Barat</option>
+            <option value="20">Kalimantan Tengah</option>
+            <option value="21">Kalimantan Selatan</option>
+            <option value="22">Kalimantan Timur</option>
+            <option value="23">Kalimantan Utara</option>
+            <option value="24">Sulawesi Utara</option>
+            <option value="25">Sulawesi Tengah</option>
+            <option value="26">Sulawesi Selatan</option>
+            <option value="27">Sulawesi Tenggara</option>
+            <option value="28">Gorontalo</option>
+            <option value="29">Maluku</option>
+            <option value="30">Maluku Utara</option>
+            <option value="31">Papua Barat</option>
+            <option value="32">Papua</option>
+          </select>
+          </div>
+          <div class="carausel">
+            <!-- <button id="prevBtn" onclick="prevSlide()"><i class="fas fa-chevron-left"></i></button> -->
+            <img src="images/arrow-left.png" id="prevBtn" onclick="prevSlide()" alt="">
+            <div class="slider-container">
+              <div class="box" id="box1"><img src="images/jagung.png" alt="">
+               <div class="column">
+                <div class="col1" style="width: 50%;" >
+                    <div class="row1-1">Jagung</div>
+                    <div class="row2-1">Harga</div>
+                    <div class="row3-1">Acuan Provinsi:</div>
+                    <div class="row4-1">Acuan Nasional:</div>
+                </div>
+                <div class="col2" style="width: 50%;" >
+                    <div class="row1-2">Harga: <br> Rp.2000/kg</div>
+                    <div class="row2-2"></div>
+                    <div class="row3-2">Rp.13.500/kg</div>
+                    <div class="row4-2">Rp.12.000/kg</div>
+                </div>
+               </div>
+            </div>
+              <div class="box" id="box2"><img src="images/cabe.png" alt="">
+                <div class="column">
+                <div class="col1" style="width: 50%;" >
+                    <div class="row1-1">Cabe</div>
+                    <div class="row2-1">Harga</div>
+                    <div class="row3-1">Acuan Provinsi:</div>
+                    <div class="row4-1">Acuan Nasional:</div>
+                </div>
+                <div class="col2" style="width: 50%;" >
+                    <div class="row1-2">Harga: <br> Rp.2000/kg</div>
+                    <div class="row2-2"></div>
+                    <div class="row3-2">Rp.13.500/kg</div>
+                    <div class="row4-2">Rp.12.000/kg</div>
+                </div>
+               </div>
+            </div>
+              <div class="box" id="box3"><img src="images/tomat.png" alt="">
+                <div class="column">
+                    <div class="col1" style="width: 50%;" >
+                        <div class="row1-1">Tomat</div>
+                        <div class="row2-1">Harga</div>
+                        <div class="row3-1">Acuan Provinsi:</div>
+                        <div class="row4-1">Acuan Nasional:</div>
+                    </div>
+                    <div class="col2" style="width: 50%;" >
+                        <div class="row1-2">Harga: <br> Rp.2000/kg</div>
+                        <div class="row2-2"></div>
+                        <div class="row3-2">Rp.13.500/kg</div>
+                        <div class="row4-2">Rp.12.000/kg</div>
+                    </div>
+                   </div>
+            </div>
+              <div class="box" id="box4"><img src="images/jagung.png" alt="">
+                <div class="column">
+                    <div class="col1" style="width: 50%;" >
+                        <div class="row1-1">Jagung</div>
+                        <div class="row2-1">Harga</div>
+                        <div class="row3-1">Acuan Provinsi:</div>
+                        <div class="row4-1">Acuan Nasional:</div>
+                    </div>
+                    <div class="col2" style="width: 50%;" >
+                        <div class="row1-2">Harga: <br> Rp.2000/kg</div>
+                        <div class="row2-2"></div>
+                        <div class="row3-2">Rp.13.500/kg</div>
+                        <div class="row4-2">Rp.12.000/kg</div>
+                    </div>
+                   </div>
+            </div>
+              <!-- <div class="box" id="box5">Box 5</div>
+              <div class="box" id="box5">Box 6</div> -->
+            </div>
+           
+            <!-- <button id="nextBtn" onclick="nextSlide()"><i class="fas fa-chevron-right"></i></button> -->
+            <img src="images/arrow-right.png" id="nextBtn" onclick="nextSlide()" alt="">
+          </div>
+
+ 
+
+    <!--My JS-->
+    <script src="javascript.js"></script>
+    <!-- Bootstrap -->
+
+    
+
+       
+    </script>
+  </body>
+</html>

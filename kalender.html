@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pak Agri</title>
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&family=Red+Hat+Display&family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
+    <script src="https://unpkg.com/feather-icons"></script>
+    <!-- My Style -->
+    <link rel="stylesheet" href="css/fitur.css" />
+</head>
+<body>
+    <!-- Navbar Mulai -->
+    <nav class="navbar">
+        <img src="images/logo.png" alt="Logo Pak Agri" class="logo-image" />
+        <div class="navbar-nav">
+            <a href="index.html">Beranda</a>
+            <a href="#artikel">Artikel</a>
+            <a class="nav-active" href="#feature">Fitur</a>
+            <a href="#faq">FAQ</a>
+        </div>
+        <div class="nav-icon">
+            <img src="images/notif.png" alt="">
+            <img src="images/profile.png" alt="">
+        </div>
+        <div class="navbar-extra">
+            <a href="#" id="hamburger-menu"><i data-feather="menu"></i></a>
+        </div>
+    </nav>
+    <!-- Navbar Selesai -->
+    <div class="container">
+        <div class="wrapper">
+            <header>
+                <div class="icons">
+                    <span id="prev" class="material-symbols-rounded">chevron_left</span>
+                    <p class="current-date"></p>
+                    <span id="next" class="material-symbols-rounded">chevron_right</span>
+                </div>
+            </header>
+            <div class="calendar">
+                <ul class="weeks">
+                    <li>Min</li>
+                    <li>Sen</li>
+                    <li>Sel</li>
+                    <li>Rab</li>
+                    <li>Kam</li>
+                    <li>Jum</li>
+                    <li>Sab</li>
+                </ul>
+                <ul class="days"></ul>
+            </div>
+        </div>
+        <div class="ket-warna">
+        <div class="row-hijau">
+            <div class="hijau"></div>
+            <div>: Tanggal Hari Ini</div>
+        </div>   
+            <div class="row-kuning">
+                <div class="kuning"></div>
+                <div > : Catatan Anda</div>
+            </div>
+        </div>
+        <div class="catatan">
+            <h1>Catatan</h1>
+            <ul></ul>
+            <button onclick="showPopUp()" >tambah</button>
+            <div id="pop-up" class="pop-up" style="display: none" >
+                <p>Masukkan Tanggal : </p>
+                <input type="date" name="" id="">
+                <p>Masukkan Catatan</p>
+                <input type="text" name="" id="">
+                <button id="saveButton" >Save</button>
+               <img id="closeIcon" src="images/tutup.svg" alt="Close" onclick="closePopUp()">
+                </div>
+                <div id="overlay" class="overlay" style="display: none"></div>
+        </div>
+    </div>
+    <!-- My JS -->
+    <script src="js/script.js"></script>
+    <script>
+        const daysTag = document.querySelector(".days"),
+            currentDate = document.querySelector(".current-date"),
+            prevNextIcon = document.querySelectorAll(".icons span"),
+            notesContainer = document.querySelector(".catatan ul");
+    
+        let date = new Date(),
+            currYear = date.getFullYear(),
+            currMonth = date.getMonth(),
+            notes = {}; // Object to store notes for each date
+    
+        const months = [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December",
+        ];
+    
+        const renderCalendar = () => {
+            let firstDayofMonth = new Date(currYear, currMonth, 1).getDay(),
+                lastDateofMonth = new Date(currYear, currMonth + 1, 0).getDate(),
+                lastDayofMonth = new Date(currYear, currMonth, lastDateofMonth).getDay(),
+                lastDateofLastMonth = new Date(currYear, currMonth, 0).getDate();
+            let liTag = "";
+    
+            for (let i = firstDayofMonth; i > 0; i--) {
+                liTag += `<li class="inactive">${lastDateofLastMonth - i + 1}</li>`;
+            }
+    
+            for (let i = 1; i <= lastDateofMonth; i++) {
+                let isToday =
+                    i === date.getDate() &&
+                    currMonth === new Date().getMonth() &&
+                    currYear === new Date().getFullYear()
+                        ? "active"
+                        : "";
+                let hasNotes = notes[`${currYear}-${currMonth + 1}-${i}`] ? "has-notes" : "";
+    
+                liTag += `<li class="${isToday} ${hasNotes}" onclick="updateNotes(${i})">${i}</li>`;
+            }
+    
+            for (let i = lastDayofMonth; i < 6; i++) {
+                liTag += `<li class="inactive">${i - lastDayofMonth + 1}</li>`;
+            }
+            currentDate.innerText = `${months[currMonth]} ${currYear}`;
+            daysTag.innerHTML = liTag;
+        };
+    
+        const updateNotes = (day) => {
+            const selectedDate = `${currYear}-${currMonth + 1}-${day}`;
+            const existingNote = notes[selectedDate] || "";
+            const userNote = prompt(`Catatan untuk tanggal ${day}/${currMonth + 1}/${currYear}:`, existingNote);
+            if (userNote !== null) {
+                notes[selectedDate] = userNote;
+                renderCalendar();
+                saveNotesToLocalStorage();
+            }
+        };
+    
+        const saveNotesToLocalStorage = () => {
+            localStorage.setItem("notes", JSON.stringify(notes));
+        };
+    
+        const loadNotesFromLocalStorage = () => {
+            const storedNotes = localStorage.getItem("notes");
+            if (storedNotes) {
+                notes = JSON.parse(storedNotes);
+                renderCalendar();
+            }
+        };
+    
+        prevNextIcon.forEach((icon) => {
+            icon.addEventListener("click", () => {
+                currMonth = icon.id === "prev" ? currMonth - 1 : currMonth + 1;
+    
+                if (currMonth < 0 || currMonth > 11) {
+                    date = new Date(currYear, currMonth, new Date().getDate());
+                    currYear = date.getFullYear();
+                    currMonth = date.getMonth();
+                } else {
+                    date = new Date();
+                }
+                renderCalendar();
+            });
+        });
+    
+        // Load notes from local storage on page load
+        loadNotesFromLocalStorage();
+    </script>
+    
+</body>
+</html>
